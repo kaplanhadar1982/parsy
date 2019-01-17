@@ -1,16 +1,20 @@
 from flask import Flask,request,jsonify
 from flask_cors import CORS
+from config import Config
 from routes import *
 
-app = Flask(__name__)
-CORS(app)
-app.register_blueprint(routes)
+class ParseServer(object):
 
+    def __init__(self):
+        self._app = Flask(__name__)
+        CORS(self._app)
+        self._app.register_blueprint(routes)
 
-@app.route("/",methods=['GET'])
-def get_ui():
-    return 'this is the zerver speeking'
+    
+    def start(self):
+        self._app.run('0.0.0.0',3333)
 
+    
 
-if __name__ == '__main__':
-    app.run('0.0.0.0',3333)
+ps = ParseServer()
+ps.start()

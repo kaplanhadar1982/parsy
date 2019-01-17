@@ -1,5 +1,12 @@
-class Config():
+from data_structures import Singleton
 
-    def __init__(self):
+class Config(Singleton):
 
-        self.application_key = 'MY_APP_KEY'
+    def __init__(self, c):
+        self._c = c
+
+
+    def printc(self):
+        print(self._c)
+
+     
